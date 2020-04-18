@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    Welcome to the Dessert Catelog!
+</h:head>
+
+<h:body>
+
+<h:form id="form">
+    <p:repeat value="#{itemListView.items}" var="item">
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Item:"/>
+                    <h:outputText value="#{item.item}" style="font-weight: bold"/>
+                    <h:outputText value="Quantity:"/>
+                    <h:outputText value="#{item.quantity}" style="font-weight: bold"/>
+                    <h:outputText value="Type:"/>
+                    <h:outputText value="#{item.type}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+
+            <hr/>
+
+            <p:commandButton value="Update Dessert" action="#{itemListView.redirectToEditItems}">
+                <f:actionListener binding="#{editItemView.populateView(item.id)}" style="margin-left:20px;" />
+                <hr/>
+                <p:commandButton value="Delete Dessert" action="#{itemListView.deleteItem(item.id)}"
+                                 style="margin-right:20px;"/>
+            </p:commandButton>
+
+        </h:panelGrid>
+
+
+    </p:repeat>
+
+    <p:commandButton value="Add Dessert" action="#{itemListView.redirectToEditItems}" style="margin-right:20px;"/>
+
+
+</h:form>
+
+
+
+
+
+
+
+</h:body>
+</html>
